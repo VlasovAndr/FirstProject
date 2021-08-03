@@ -51,8 +51,9 @@ namespace EmployersLibrary
         }
         public ICollection<Person> GetListOfAllOfficeAbsentEmployers()
         {
-            return null;
-            //TODO
+            List<Person> stuffOfficeAbsentEmployers = new List<Person>();
+            stuffOfficeAbsentEmployers = stuff.FindAll(item => item.IsEntered == false);
+            return stuffOfficeAbsentEmployers;
         }
     }
 
