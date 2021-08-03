@@ -51,16 +51,7 @@ namespace EmployersLibrary
         }
         public ICollection<Person> GetListOfAllOfficeAbsentEmployers()
         {
-            stuffOfficeAbsentEmployers = new List<Person>();
-            var count = stuff.Count;
-            for (int i = count - 1; i >= 0; i--)
-            {
-                if (stuff[i].IsEntered == false)
-                {
-                    stuffOfficeAbsentEmployers.Add(stuff[i]);
-                }
-            }
-            return stuffOfficeAbsentEmployers;
+            return null;
             //TODO
         }
     }
