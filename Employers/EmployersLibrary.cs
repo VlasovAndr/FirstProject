@@ -66,18 +66,22 @@ namespace EmployersLibrary
         public string FirstName;
         public string LastName;
         public bool IsEntered;
-    }
+        public Person()
+        {
+            this.IsEntered = true;
+        }
+}
 
-    public class Employer : Person
-    {
+public class Employer : Person
+{
 
-    }
+}
 
-    public class Director : Person
-    {
-        public Company firstLineSoftware;
-        public ICollection<Person> GetListOfAllOfficeEmployers() => firstLineSoftware.stuffOfficeEmployers;
-        public ICollection<Person> GetListOfAllOfficeAbsentEmployers() => firstLineSoftware.stuffOfficeAbsentEmployers;
-        public ICollection<Person> GetListOfAllEmployers() => firstLineSoftware.stuff;
-    }
+public class Director : Person
+{
+    public Company firstLineSoftware;
+    public ICollection<Person> GetListOfAllOfficeEmployers() => firstLineSoftware.stuffOfficeEmployers;
+    public ICollection<Person> GetListOfAllOfficeAbsentEmployers() => firstLineSoftware.stuffOfficeAbsentEmployers;
+    public ICollection<Person> GetListOfAllEmployers() => firstLineSoftware.stuff;
+}
 }
