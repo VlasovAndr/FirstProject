@@ -9,7 +9,8 @@ namespace EmployersLibrary
     public class Company
     {
         public List<Person> stuff;
-        public List<Person> stuffOfficeEmployers {
+        public List<Person> stuffOfficeEmployers
+        {
             get
             {
                 var stuffOfficeEmployers = new List<Person>();
@@ -22,9 +23,17 @@ namespace EmployersLibrary
                     }
                 }
                 return stuffOfficeEmployers;
-            } 
+            }
         }
-        public List<Person> stuffOfficeAbsentEmployers;
+        public List<Person> stuffOfficeAbsentEmployers
+        {
+            get
+            {
+                List<Person> stuffOfficeAbsentEmployers = new List<Person>();
+                stuffOfficeAbsentEmployers = stuff.FindAll(item => item.IsEntered == false);
+                return stuffOfficeAbsentEmployers;
+            }
+        }
 
         public Company()
         {
@@ -50,12 +59,6 @@ namespace EmployersLibrary
             p.IsEntered = false;
         }
 
-        public List<Person> GetListOfAllOfficeAbsentEmployers()
-        {
-            List<Person> stuffOfficeAbsentEmployers = new List<Person>();
-            stuffOfficeAbsentEmployers = stuff.FindAll(item => item.IsEntered == false);
-            return stuffOfficeAbsentEmployers;
-        }
     }
 
     public class Person
