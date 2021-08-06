@@ -19,15 +19,13 @@ namespace EmployersLibrary.Test
             FLS.stuff.Add(alexV);
             FLS.stuff.Add(andreiI);
             FLS.stuff.Add(andrewV);
-
+            Person alexVsss = new Person() { LastName = "Vlasov", FirstName = "Alexei", IsEntered=false };
             //act
             List<Person> actualResult = FLS.stuffOfficeEmployers;
-
-            //assert
             Assert.Collection(actualResult, item => Assert.Contains("Filipov", item.LastName),
                            item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Vlasov", item.LastName),
                            item => Assert.Contains("Ivlev", item.LastName));
-            Assert.Contains(actualResult, item => item.IsEntered == true);
+            Assert.DoesNotContain(actualResult, item => item.IsEntered == false);
             Assert.Equal(4, actualResult.Count);
             Assert.Equal(4, FLS.stuff.Count);
             Assert.Collection(FLS.stuff, item => Assert.Contains("Filipov", item.LastName),
