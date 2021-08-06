@@ -6,31 +6,33 @@ namespace EmployersLibrary.Test
     public class EmployersLibraryTests
     {
         [Fact]
-        public void GetStuffOfficeEmployersTest()
+        public void GetStuffOfficeEmployers_WhenAllPersonInOffice()
         {
             // arrange
-            Company firstLine = new Company();
-            Person andrewV = new Person() { FirstName = "Andrew", LastName = "Vlasov", IsEntered = true };
-            Person andrewI = new Person() { FirstName = "Andrew", LastName = "Ivlev", IsEntered = true };
-            Person alexV = new Person() { FirstName = "Alex", LastName = "Vlasov", IsEntered = true };
-            Person vovaF = new Person() { FirstName = "Vova", LastName = "Filipov", IsEntered = false };
-            firstLine.stuff.Add(andrewV);
-            firstLine.stuff.Add(andrewI);
-            firstLine.stuff.Add(vovaF);
-            firstLine.stuff.Add(alexV);
+            Company FLS = new Company();
+            Person alexV = new Person() { LastName = "Vlasov", FirstName = "Alexei" };
+            Person andrewV = new Person() { LastName = "Ivlev", FirstName = "Andrei" };
+            Person andreiI = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
+            Person vladimirF = new Person() { LastName = "Filipov", FirstName = "Vladimir" };
+            FLS.stuff = new List<Person>();
+            FLS.stuff.Add(vladimirF);
+            FLS.stuff.Add(alexV);
+            FLS.stuff.Add(andreiI);
+            FLS.stuff.Add(andrewV);
 
             //act
-            List<Person> actualResult = firstLine.stuffOfficeEmployers;
+            List<Person> actualResult = FLS.stuffOfficeEmployers;
 
             //assert
-            Assert.Collection(actualResult, item => Assert.Contains("Vlasov", item.LastName),
-                           item => Assert.Contains("Ivlev", item.LastName), item => Assert.Contains("Vlasov", item.LastName));
+            Assert.Collection(actualResult, item => Assert.Contains("Filipov", item.LastName),
+                           item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Vlasov", item.LastName),
+                           item => Assert.Contains("Ivlev", item.LastName));
             Assert.Contains(actualResult, item => item.IsEntered == true);
-            Assert.Equal(3, actualResult.Count);
-            Assert.Equal(4, firstLine.stuff.Count);
-            Assert.Collection(firstLine.stuff, item => Assert.Contains("Vlasov", item.LastName),
-               item => Assert.Contains("Ivlev", item.LastName), item => Assert.Contains("Filipov", item.LastName),
-               item => Assert.Contains("Vlasov", item.LastName));
+            Assert.Equal(4, actualResult.Count);
+            Assert.Equal(4, FLS.stuff.Count);
+            Assert.Collection(FLS.stuff, item => Assert.Contains("Filipov", item.LastName),
+                           item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Vlasov", item.LastName),
+                           item => Assert.Contains("Ivlev", item.LastName));
         }
 
         [Fact]
