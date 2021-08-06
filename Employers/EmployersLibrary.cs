@@ -15,7 +15,7 @@ namespace EmployersLibrary
             {
                 var stuffOfficeEmployers = new List<Person>();
                 var count = stuff.Count;
-                for (int i = count - 1; i >= 0; i--)
+                for (int i = 0; i < count; i++)
                 {
                     if (stuff[i].IsEntered == true)
                     {
