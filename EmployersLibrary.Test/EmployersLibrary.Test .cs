@@ -70,7 +70,7 @@ namespace EmployersLibrary.Test
             // arrange
             Company FLS = new Company();
             Person alex = new Person() { LastName = "Vlasov", FirstName = "Alexei" };
-            Person andrew = new Person() { LastName = "Ivlev", FirstName = "Andrei" };
+            Person andrew = new Person() { LastName = "Ivlev", FirstName = "Andrew" };
             Person andrei = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
             Person pavel = new Person() { LastName = "Ivanov", FirstName = "Pavel" };
             FLS.stuff = new List<Person>();
@@ -84,7 +84,8 @@ namespace EmployersLibrary.Test
 
             // assert
             Assert.Equal(0, actualResult.Count);
-        }  
+            Assert.Equal(4, FLS.stuff.Count);
+        }
 
         [Fact]
         public void GetAbsentOfficeEmployers_WhenOnePersonComeOut()
@@ -92,7 +93,7 @@ namespace EmployersLibrary.Test
             // arrange
             Company FLS = new Company();
             Person alex = new Person() { LastName = "Vlasov", FirstName = "Alexei" };
-            Person andrew = new Person() { LastName = "Ivlev", FirstName = "Andrei" };
+            Person andrew = new Person() { LastName = "Ivlev", FirstName = "Andrew" };
             Person andrei = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
             Person pavel = new Person() { LastName = "Ivanov", FirstName = "Pavel" };
             FLS.stuff = new List<Person>();
@@ -117,28 +118,60 @@ namespace EmployersLibrary.Test
         {
             // arrange
             Company FLS = new Company();
-            Person alex = new Person() { LastName = "Vlasov", FirstName = "Alexei" };
-            Person andrew = new Person() { LastName = "Ivlev", FirstName = "Andrei" };
-            Person andrei = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
             Person pavel = new Person() { LastName = "Ivanov", FirstName = "Pavel" };
+            Person andrew = new Person() { LastName = "Ivlev", FirstName = "Andrew" };
+            Person andrei = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
+            Person alex = new Person() { LastName = "Vlasov", FirstName = "Alexei" };
             FLS.stuff = new List<Person>();
-            FLS.stuff.Add(alex);
+            FLS.stuff.Add(pavel);
             FLS.stuff.Add(andrei);
             FLS.stuff.Add(andrew);
-            FLS.stuff.Add(pavel);
+            FLS.stuff.Add(alex);
 
             // act
             FLS.PersonComeOut(pavel);
+            FLS.PersonComeOut(andrew);
             FLS.PersonComeOut(andrei);
             FLS.PersonComeOut(alex);
             FLS.PersonComeIn(pavel);
             List<Person> actualResult = FLS.stuffOfficeAbsentEmployers;
 
+            //assert
+            Assert.Collection(FLS.stuff, item => Assert.Contains("Ivanov", item.LastName), item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivlev", item.LastName),
+            item => Assert.Contains("Vlasov", item.LastName));
+            Assert.DoesNotContain(actualResult, item => item.IsEntered == true);
+            Assert.Equal(3, actualResult.Count);
+
+        }
+        [Fact]
+        public void GetAbsentOfficeEmployers_WhenPersonRemoveFromOffice()
+        {
+            // arrange
+            Company FLS = new Company();
+            Person pavel = new Person() { LastName = "Ivanov", FirstName = "Pavel" };
+            Person alex = new Person() { LastName = "Vlasov", FirstName = "Alexei" };
+            Person andrew = new Person() { LastName = "Ivlev", FirstName = "Andrew" };
+            Person andrei = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
+
+
+            FLS.stuff = new List<Person>();
+            FLS.stuff.Add(pavel);
+            FLS.stuff.Add(alex);
+            FLS.stuff.Add(andrew);
+            FLS.stuff.Add(andrei);
+
+            // act
+            FLS.RemovePerson(pavel);
+            FLS.RemovePerson(alex);
+            FLS.PersonComeOut(andrew);
+            FLS.PersonComeOut(andrei);
+
+            List<Person> actualResult = FLS.stuffOfficeAbsentEmployers;
 
             //assert
-            Assert.Collection(actualResult, item => Assert.Contains("Ivanov", item.LastName));
+            Assert.Collection(FLS.stuff,  item => Assert.Contains("Ivlev", item.LastName), item => Assert.Contains("Vlasov", item.LastName));
             Assert.Contains(actualResult, item => item.IsEntered == false);
-            Assert.Equal(1, actualResult.Count);
+            Assert.Equal(2, actualResult.Count);
 
         }
     }
