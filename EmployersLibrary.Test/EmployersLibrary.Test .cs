@@ -11,30 +11,29 @@ namespace EmployersLibrary.Test
             // arrange
             Company FLS = new Company();
             Person alexV = new Person() { LastName = "Vlasov", FirstName = "Alexei" };
-            Person andrewV = new Person() { LastName = "Ivlev", FirstName = "Andrei" };
-            Person andreiI = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
+            Person andreyI = new Person() { LastName = "Ivlev", FirstName = "Andrei" };
+            Person andreyV = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
             Person vladimirF = new Person() { LastName = "Filipov", FirstName = "Vladimir" };
             FLS.stuff = new List<Person>();
             FLS.stuff.Add(vladimirF);
             FLS.stuff.Add(alexV);
-            FLS.stuff.Add(andreiI);
-            FLS.stuff.Add(andrewV);
+            FLS.stuff.Add(andreyI);
+            FLS.stuff.Add(andreyV);
 
             //act
             List<Person> actualResult = FLS.stuffOfficeEmployers;
 
             // assert
             Assert.Collection(actualResult, item => Assert.Contains("Filipov", item.LastName),
-                           item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Vlasov", item.LastName),
-                           item => Assert.Contains("Ivlev", item.LastName));
+                           item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivlev", item.LastName),
+                           item => Assert.Contains("Vlasov", item.LastName));
             Assert.DoesNotContain(actualResult, item => item.IsEntered == false);
             Assert.Equal(4, actualResult.Count);
             Assert.Equal(4, FLS.stuff.Count);
             Assert.Collection(FLS.stuff, item => Assert.Contains("Filipov", item.LastName),
-                           item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Vlasov", item.LastName),
-                           item => Assert.Contains("Ivlev", item.LastName));
+                           item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivlev", item.LastName),
+                           item => Assert.Contains("Vlasov", item.LastName));
         }
-
 
         [Fact]
         public void GetStuffOfficeEmployers_WhenNobodyPersonInOffice()
@@ -42,20 +41,20 @@ namespace EmployersLibrary.Test
             // arrange
             Company FLS = new Company();
             Person alexV = new Person() { LastName = "Vlasov", FirstName = "Alexei" };
-            Person andrewV = new Person() { LastName = "Ivlev", FirstName = "Andrei" };
-            Person andreiI = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
+            Person andreyI = new Person() { LastName = "Ivlev", FirstName = "Andrei" };
+            Person andreyV = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
             Person vladimirF = new Person() { LastName = "Filipov", FirstName = "Vladimir" };
             FLS.stuff = new List<Person>();
             FLS.stuff.Add(vladimirF);
             FLS.stuff.Add(alexV);
-            FLS.stuff.Add(andreiI);
-            FLS.stuff.Add(andrewV);
+            FLS.stuff.Add(andreyI);
+            FLS.stuff.Add(andreyV);
 
             //act
             FLS.PersonComeOut(vladimirF);
             FLS.PersonComeOut(alexV);
-            FLS.PersonComeOut(andreiI);
-            FLS.PersonComeOut(andrewV);
+            FLS.PersonComeOut(andreyI);
+            FLS.PersonComeOut(andreyV);
             List<Person> actualResult = FLS.stuffOfficeEmployers;
 
             // assert
