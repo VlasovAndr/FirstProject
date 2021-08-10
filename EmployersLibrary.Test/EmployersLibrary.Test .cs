@@ -257,6 +257,28 @@ namespace EmployersLibrary.Test
         }
 
         [Fact]
+        public void GetStuffOfficeEmployers_WhenCompnyIsEmpty()
+        {
+            // arrange
+            Company FLS = new Company();
+            Person alexV = new Person() { LastName = "Vlasov", FirstName = "Alexei" };
+            Person andreyI = new Person() { LastName = "Ivlev", FirstName = "Andrei" };
+            Person andreyV = new Person() { LastName = "Vlasov", FirstName = "Andrei" };
+            Person vladimirF = new Person() { LastName = "Filipov", FirstName = "Vladimir" };
+            FLS.stuff = new List<Person>();
+
+            //act
+
+            List<Person> actualResult = FLS.stuffOfficeEmployers;
+
+            // assert
+            Assert.Empty(actualResult);
+            Assert.Empty(FLS.stuff);
+            Assert.Equal(0, actualResult.Count);
+            Assert.Equal(0, FLS.stuff.Count);
+        }
+
+        [Fact]
         public void GetAbsentOfficeEmployers_WhenAllPersonInOffice()
         {
             // arrange
