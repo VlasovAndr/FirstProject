@@ -58,6 +58,7 @@ namespace EmployersLibrary.Test
             List<Person> actualResult = FLS.stuffOfficeEmployers;
 
             // assert
+            Assert.Empty(actualResult);
             Assert.Equal(0, actualResult.Count);
             Assert.Equal(4, FLS.stuff.Count);
         }
