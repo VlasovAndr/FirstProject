@@ -277,6 +277,8 @@ namespace EmployersLibrary.Test
             // assert
             Assert.Equal(0, actualResult.Count);
             Assert.Equal(4, FLS.stuff.Count);
+            Assert.Collection(FLS.stuff, item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Vlasov", item.LastName),
+             item => Assert.Contains("Ivlev", item.LastName), item => Assert.Contains("Ivanov", item.LastName));
         }
 
         [Fact]
@@ -299,10 +301,12 @@ namespace EmployersLibrary.Test
             List<Person> actualResult = FLS.stuffOfficeAbsentEmployers;
 
             // assert
-            Assert.Collection(FLS.stuff, item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivlev", item.LastName),
-             item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivanov", item.LastName));
+            Assert.Collection(actualResult, item => Assert.Contains("Ivanov", item.LastName));
             Assert.Contains(actualResult, item => item.IsEntered == false);
             Assert.Equal(1, actualResult.Count);
+            Assert.Equal(4, FLS.stuff.Count);
+            Assert.Collection(FLS.stuff, item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivlev", item.LastName),
+             item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivanov", item.LastName));
 
         }
         [Fact]
@@ -322,18 +326,20 @@ namespace EmployersLibrary.Test
 
             // act
             FLS.PersonComeOut(pavel);
-            FLS.PersonComeOut(andrew);
             FLS.PersonComeOut(andrei);
+            FLS.PersonComeOut(andrew);
             FLS.PersonComeOut(alex);
             FLS.PersonComeIn(pavel);
             List<Person> actualResult = FLS.stuffOfficeAbsentEmployers;
 
             //assert
-            Assert.Collection(FLS.stuff, item => Assert.Contains("Ivanov", item.LastName), item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivlev", item.LastName),
-            item => Assert.Contains("Vlasov", item.LastName));
+            Assert.Collection(actualResult, item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivlev", item.LastName),
+              item => Assert.Contains("Vlasov", item.LastName));
             Assert.DoesNotContain(actualResult, item => item.IsEntered == true);
             Assert.Equal(3, actualResult.Count);
-
+            Assert.Equal(4, FLS.stuff.Count);
+            Assert.Collection(FLS.stuff, item => Assert.Contains("Ivanov", item.LastName), item => Assert.Contains("Vlasov", item.LastName),
+                item => Assert.Contains("Ivlev", item.LastName), item => Assert.Contains("Vlasov", item.LastName));
         }
 
         [Fact]
@@ -365,11 +371,13 @@ namespace EmployersLibrary.Test
             List<Person> actualResult = FLS.stuffOfficeAbsentEmployers;
 
             //assert
-            Assert.Collection(FLS.stuff, item => Assert.Contains("Ivanov", item.LastName), item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivlev", item.LastName),
+            Assert.Collection(actualResult, item => Assert.Contains("Ivanov", item.LastName), item => Assert.Contains("Vlasov", item.LastName), item => Assert.Contains("Ivlev", item.LastName),
             item => Assert.Contains("Vlasov", item.LastName));
             Assert.Contains(actualResult, item => item.IsEntered == false);
             Assert.Equal(4, actualResult.Count);
-
+            Assert.Equal(4, FLS.stuff.Count);
+            Assert.Collection(FLS.stuff, item => Assert.Contains("Ivanov", item.LastName), item => Assert.Contains("Vlasov", item.LastName),
+                item => Assert.Contains("Ivlev", item.LastName), item => Assert.Contains("Vlasov", item.LastName));
         }
 
         [Fact]
@@ -390,16 +398,14 @@ namespace EmployersLibrary.Test
 
             // act
             FLS.RemovePerson(pavel);
-            FLS.RemovePerson(alex);
-            FLS.PersonComeOut(andrew);
-            FLS.PersonComeOut(andrei);
             List<Person> actualResult = FLS.stuffOfficeAbsentEmployers;
 
             //assert
-            Assert.Collection(FLS.stuff, item => Assert.Contains("Ivlev", item.LastName), item => Assert.Contains("Vlasov", item.LastName));
-            Assert.Contains(actualResult, item => item.IsEntered == false);
-            Assert.Equal(2, actualResult.Count);
-
+            Assert.DoesNotContain(actualResult, item => item.IsEntered == true);
+            Assert.Equal(0, actualResult.Count);
+            Assert.Equal(3, FLS.stuff.Count);
+            Assert.Collection(FLS.stuff, item => Assert.Contains("Vlasov", item.LastName),
+               item => Assert.Contains("Ivlev", item.LastName), item => Assert.Contains("Vlasov", item.LastName));
         }
     }
 }
