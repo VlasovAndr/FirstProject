@@ -70,18 +70,24 @@ namespace EmployersLibrary
         {
             this.IsEntered = true;
         }
-}
+    }
 
-public class Employer : Person
-{
+    public class Employer : Person
+    {
 
-}
+    }
 
-public class Director : Person
-{
-    public Company firstLineSoftware;
-    public ICollection<Person> GetListOfAllOfficeEmployers() => firstLineSoftware.stuffOfficeEmployers;
-    public ICollection<Person> GetListOfAllOfficeAbsentEmployers() => firstLineSoftware.stuffOfficeAbsentEmployers;
-    public ICollection<Person> GetListOfAllEmployers() => firstLineSoftware.stuff;
-}
+    public class Director : Person
+    {
+        public Company company;
+
+        public Director(Company company)
+        {
+            this.company = company;
+        }
+
+        public ICollection<Person> GetListOfAllOfficeEmployers() => company.stuffOfficeEmployers;
+        public ICollection<Person> GetListOfAllOfficeAbsentEmployers() => company.stuffOfficeAbsentEmployers;
+        public ICollection<Person> GetListOfAllEmployers() => company.stuff;
+    }
 }
