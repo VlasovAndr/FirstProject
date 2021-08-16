@@ -41,7 +41,7 @@ namespace SpecFlowProject1.Steps
         {
             var company = (Company)_scenarioContext[_company];
             var director = new Director(company);
-            var allCompanyEmployersCollection = director.GetListOfAllOfficeEmployers();
+            var allCompanyEmployersCollection = director.GetListOfAllEmployers();
             _scenarioContext[_allCompanyEmployersCollection] = allCompanyEmployersCollection;
         }
 
@@ -50,7 +50,7 @@ namespace SpecFlowProject1.Steps
         {
             var company = (Company)_scenarioContext[_company];
             var director = new Director(company);
-            var stuffCollection = director.GetListOfAllEmployers();
+            var stuffCollection = director.GetListOfAllOfficeEmployers();
             _scenarioContext[_stuffCollection] = stuffCollection;
         }
 
