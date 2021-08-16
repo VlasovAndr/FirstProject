@@ -139,18 +139,20 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 14
- testRunner.When("I Get List Of All Office Employers as new Director of company \'FLS\' and put it in" +
-                        " scenario context \'actualResult\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I Get List Of All Company Employers as new Director of company \'FLS\' and put it i" +
+                        "n actual scenario context \'allCompanyEmployersResult\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.When("I Get List Of All Office Employers as new Director of company \'FLS\' and put it in" +
-                        " scenario context \'FLS.stuff\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I Get List Of Stuff Office Employers as new Director of company \'FLS\' and put it " +
+                        "in expected scenario context \'stuffOfficeEmployersResult\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.Then("I validate count of collection \'actualResult\' is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I validate count of all office employers collection \'allCompanyEmployersResult\' i" +
+                        "s \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
- testRunner.And("I validate count of collection \'FLS.stuff\' is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I validate count of stuff office employers collection \'stuffOfficeEmployersResult" +
+                        "\' is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

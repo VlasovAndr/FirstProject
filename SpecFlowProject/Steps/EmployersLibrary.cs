@@ -36,23 +36,37 @@ namespace SpecFlowProject1.Steps
             }
         }
 
-        [When("I Get List Of All Office Employers as new Director of company '(.*)' and put it in scenario context '(.*)'")]
-        public void IGetListOfAllOfficeEmploytersAsNewDirectorOfCompanyAndPutItInScenarioContext(string _company, string _stuffCollection)
+        [When(@"I Get List Of All Company Employers as new Director of company '(.*)' and put it in actual scenario context '(.*)'")]
+        public void WhenIGetListOfAllCompanyEmployersAsNewDirectorOfCompanyAndPutItInActualScenarioContext(string _company, string _allCompanyEmployersCollection)
         {
             var company = (Company)_scenarioContext[_company];
             var director = new Director(company);
-            var stuffCollection = director.GetListOfAllOfficeEmployers();
+            var allCompanyEmployersCollection = director.GetListOfAllOfficeEmployers();
+            _scenarioContext[_allCompanyEmployersCollection] = allCompanyEmployersCollection;
+        }
+
+        [When(@"I Get List Of Stuff Office Employers as new Director of company '(.*)' and put it in expected scenario context '(.*)'")]
+        public void WhenIGetListOfStuffOfficeEmployersAsNewDirectorOfCompanyAndPutItInExpectedScenarioContext(string _company, string _stuffCollection)
+        {
+            var company = (Company)_scenarioContext[_company];
+            var director = new Director(company);
+            var stuffCollection = director.GetListOfAllEmployers();
             _scenarioContext[_stuffCollection] = stuffCollection;
         }
 
-        [Then("I validate count of collection '(.*)' is '(.*)'")]
-        public void ThenIValidateCountOfCollection(string _collection, int expectedCount)
+        [Then(@"I validate count of all office employers collection '(.*)' is '(.*)'")]
+        public void ThenIValidateCountOfAllOfficeEmployersCollectionIs(string _collection, int expectedCount)
         {
-            var collection = (List<Person>)_scenarioContext[_collection];
-            Assert.Equal(expectedCount, collection.Count);
+            var allOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.Equal(expectedCount, allOfficeEmployersCollection.Count);
         }
 
-
+        [Then(@"I validate count of stuff office employers collection '(.*)' is '(.*)'")]
+        public void ThenIValidateCountOfStuffOfficeEmployersCollectionIs(string _collection, int expectedCount)
+        {
+            var stuffOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.Equal(expectedCount, stuffOfficeEmployersCollection.Count);
+        }
     }
 }
 

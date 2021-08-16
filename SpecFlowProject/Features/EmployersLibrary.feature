@@ -11,7 +11,7 @@ Background: Set employees in company
 
 		
 Scenario: GetStuffOfficeEmployers_WhenAllPersonInOffice
-	When I Get List Of All Office Employers as new Director of company 'FLS' and put it in scenario context 'actualResult'
-	When I Get List Of All Office Employers as new Director of company 'FLS' and put it in scenario context 'FLS.stuff'
-	Then I validate count of collection 'actualResult' is '4'
-	And I validate count of collection 'FLS.stuff' is '4'
+	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployersResult'
+	When I Get List Of Stuff Office Employers as new Director of company 'FLS' and put it in expected scenario context 'stuffOfficeEmployersResult'
+	Then I validate count of all office employers collection 'allCompanyEmployersResult' is '4'
+	And I validate count of stuff office employers collection 'stuffOfficeEmployersResult' is '4'
