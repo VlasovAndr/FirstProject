@@ -14,4 +14,7 @@ Scenario: GetStuffOfficeEmployers_WhenAllPersonInOffice
 	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployersResult'
 	When I Get List Of Stuff Office Employers as new Director of company 'FLS' and put it in expected scenario context 'stuffOfficeEmployersResult'
 	Then I validate count of all office employers collection 'allCompanyEmployersResult' is '4'
+	And I validate collection of all office office employers 'allCompanyEmployersResult' consist of person with last name 'Vlasov', 'Vlasov', 'Ivlev', 'Filipov'
 	And I validate count of stuff office employers collection 'stuffOfficeEmployersResult' is '4'
+	And I validate collection of stuff office employers 'stuffOfficeEmployersResult' consist of person with last name 'Vlasov', 'Vlasov', 'Ivlev', 'Filipov'
+	And I validate that collection of stuff office employers 'stuffOfficeEmployersResult' 'does not contain' absent persons

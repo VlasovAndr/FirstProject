@@ -9,11 +9,11 @@ using EmployersLibrary;
 namespace SpecFlowProject1.Steps
 {
     [Binding]
-    public sealed class CalculatorStepDefinitions
+    public sealed class EmployersStepDefinitions
     {
         private readonly ScenarioContext _scenarioContext;
 
-        public CalculatorStepDefinitions(ScenarioContext scenarioContext)
+        public EmployersStepDefinitions(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }
@@ -61,12 +61,47 @@ namespace SpecFlowProject1.Steps
             Assert.Equal(expectedCount, allOfficeEmployersCollection.Count);
         }
 
+        [Then(@"I validate collection of all office office employers '(.*)' consist of person with last name '(.*)', '(.*)', '(.*)', '(.*)'")]
+        public void ThenIValidateCollectionOfAllOfficeOfficeEmployersConsistOfPersonWithLastName(string _collection, string firstPerson, string secondPerson, string thirdPerson, string fourthPerson)
+        {
+            var allOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.Collection(allOfficeEmployersCollection, item => Assert.Contains(firstPerson, item.LastName),
+                   item => Assert.Contains(secondPerson, item.LastName), item => Assert.Contains(thirdPerson, item.LastName),
+                   item => Assert.Contains(fourthPerson, item.LastName));
+        }
+
         [Then(@"I validate count of stuff office employers collection '(.*)' is '(.*)'")]
         public void ThenIValidateCountOfStuffOfficeEmployersCollectionIs(string _collection, int expectedCount)
         {
             var stuffOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
             Assert.Equal(expectedCount, stuffOfficeEmployersCollection.Count);
         }
+
+        [Then(@"I validate collection of stuff office employers '(.*)' consist of person with last name '(.*)', '(.*)', '(.*)', '(.*)'")]
+        public void ThenIValidateCollectionOfStuffOfficeEmployersConsistOfPersonWithLastName(string _collection, string firstPerson, string secondPerson, string thirdPerson, string fourthPerson)
+        {
+            var stuffOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.Collection(stuffOfficeEmployersCollection, item => Assert.Contains(firstPerson, item.LastName),
+                   item => Assert.Contains(secondPerson, item.LastName), item => Assert.Contains(thirdPerson, item.LastName),
+                   item => Assert.Contains(fourthPerson, item.LastName));
+        }
+
+        [Then(@"I validate that collection of stuff office employers '(.*)' does not contain absent persons")]
+        public void ThenIValidateThatCollectionOfStuffOfficeEmployersDoesNotContainAbsentPersons(string _collection)
+        {
+            var stuffOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.DoesNotContain(stuffOfficeEmployersCollection, item => item.IsEntered == false);
+        }
+
+        [Then(@"I validate that collection of stuff office employers '(.*)' '(.*)' absent persons")]
+        public void ThenIValidateThatCollectionOfStuffOfficeEmployersAbsentPersons(string _collection, string _isAbsent)
+        {
+            var stuffOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            _scenarioContext[_isAbsent] = false;
+            var absent = (bool)_scenarioContext[_isAbsent];
+            Assert.DoesNotContain(stuffOfficeEmployersCollection, item => item.IsEntered == absent);
+        }
+
     }
 }
 

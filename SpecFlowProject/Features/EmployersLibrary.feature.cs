@@ -151,8 +151,20 @@ this.FeatureBackground();
                         "s \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
+ testRunner.And("I validate collection of all office office employers \'allCompanyEmployersResult\' " +
+                        "consist of person with last name \'Vlasov\', \'Vlasov\', \'Ivlev\', \'Filipov\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
  testRunner.And("I validate count of stuff office employers collection \'stuffOfficeEmployersResult" +
                         "\' is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 19
+ testRunner.And("I validate collection of stuff office employers \'stuffOfficeEmployersResult\' cons" +
+                        "ist of person with last name \'Vlasov\', \'Vlasov\', \'Ivlev\', \'Filipov\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 20
+ testRunner.And("I validate that collection of stuff office employers \'stuffOfficeEmployersResult\'" +
+                        " \'does not contain\' absent persons", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
