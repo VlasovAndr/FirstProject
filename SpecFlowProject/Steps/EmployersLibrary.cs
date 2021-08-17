@@ -120,7 +120,7 @@ namespace SpecFlowProject1.Steps
         public void WhenThePersonWithLastNameAndFirstNameComeOutFromTheOfficeCompany(string lastName, string firstName, string _company)
         {
             var company = (Company)_scenarioContext[_company];
-            var person = company.stuff.Find((el) => (el.LastName == lastName) && (el.FirstName == firstName));
+            var person = company.stuff.Find((element) => (element.LastName == lastName) && (element.FirstName == firstName));
             company.PersonComeOut(person);
         }
 
@@ -136,6 +136,33 @@ namespace SpecFlowProject1.Steps
         {
             var absentOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
             Assert.DoesNotContain(absentOfficeEmployersCollection, item => item.IsEntered == true);
+        }
+
+        [When(@"All person come out from the office company '(.*)'")]
+        public void WhenAllPersonComeOutFromTheOfficeCompany(string _company)
+        {
+            var company = (Company)_scenarioContext[_company];
+
+            foreach (var person in company.stuff)
+            {
+                company.PersonComeOut(person);
+            }
+        }
+
+        [When(@"The person with LastName '(.*)' and FirstName '(.*)' come in from the office company '(.*)'")]
+        public void WhenThePersonWithLastNameAndFirstNameComeInFromTheOfficeCompany(string lastName, string firstName, string _company)
+        {
+            var company = (Company)_scenarioContext[_company];
+            var person = company.stuff.Find((element) => (element.LastName == lastName) && (element.FirstName == firstName));
+            company.PersonComeIn(person);
+        }
+
+        [Then(@"I validate collection of absent office employers '(.*)' consist of person with last name '(.*)', '(.*)', '(.*)',")]
+        public void ThenIValidateCollectionOfAbsentOfficeEmployersConsistOfPersonWithLastName(string _collection, string firstPerson, string secondPerson, string thirdPerson)
+        {
+            var absentOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.Collection(absentOfficeEmployersCollection, item => Assert.Contains(firstPerson, item.LastName),
+                   item => Assert.Contains(secondPerson, item.LastName), item => Assert.Contains(thirdPerson, item.LastName));
         }
 
 
