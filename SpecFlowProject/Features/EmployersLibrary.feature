@@ -9,7 +9,7 @@ Background: Set employees in company
 		| Ivlev    | Andrei    |
 		| Filipov  | Vladimir  |
 
-@Alex		
+@Alex
 Scenario: GetStuffOfficeEmployers_WhenAllPersonInOffice
 	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'
 	When I Get List Of Stuff Office Employers as new Director of company 'FLS' and put it in expected scenario context 'stuffOfficeEmployers'
@@ -18,6 +18,15 @@ Scenario: GetStuffOfficeEmployers_WhenAllPersonInOffice
 	And I validate count of stuff office employers collection 'stuffOfficeEmployers' is '4'
 	And I validate collection of stuff office employers 'stuffOfficeEmployers' consist of person with last name 'Vlasov', 'Vlasov', 'Ivlev', 'Filipov'
 	And I validate that collection of stuff office employers 'stuffOfficeEmployers' does not contain absent persons
+
+@Alex
+Scenario: GetStuffOfficeEmployers_WhenNobodyPersonInOffice
+	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'
+	When I Get List Of Nobody Stuff Office Employers as new Director of company 'FLS' and put it in expected scenario context 'NobodyOfficeEmployersInOffice'
+	Then I validate count of all office employers collection 'allCompanyEmployers' is '4'
+	And I validate collection of all office employers 'allCompanyEmployers' consist of person with last name 'Vlasov', 'Vlasov', 'Ivlev', 'Filipov'
+	And I validate count of Nobody stuff office employers collection 'NobodyOfficeEmployersInOffice' is '0'
+	And I validate collection of office employers 'NobodyOfficeEmployersInOffice' is empty
 
 @Andrew
 Scenario: GetAbsentOfficeEmployers_WhenAllPersonInOffice
@@ -39,7 +48,7 @@ Scenario: GetAbsentOfficeEmployers_WhenOnePersonComeOut
 	And I validate collection of absent office employers 'absentOfficeEmployers' consist of person with last name 'Filipov'
 	And I validate that collection of absent office employers 'absentOfficeEmployers' does not contain persons in office
 
-	@Andrew
+@Andrew
 Scenario: GetAbsentOfficeEmployers_WhenAllPersonComeOutAndOneComeIn
 	When All person come out from the office company 'FLS'
 	When The person with LastName 'Ivlev' and FirstName 'Andrei' come in from the office company 'FLS'
