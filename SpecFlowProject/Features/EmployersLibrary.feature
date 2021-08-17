@@ -28,6 +28,16 @@ Scenario: GetStuffOfficeEmployers_WhenNobodyPersonInOffice
 	And I validate count of Nobody stuff office employers collection 'NobodyOfficeEmployersInOffice' is '0'
 	And I validate collection of office employers 'NobodyOfficeEmployersInOffice' is empty
 
+@Alex
+Scenario: GetStuffOfficeEmployers_WhenOnePersonComeOut
+	When The person with LastName 'Ivlev' and FirstName 'Andrei' come out from the office company 'FLS'
+	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'
+	When I Get List Of Stuff Office Employers as new Director of company 'FLS' and put it in expected scenario context 'stuffOfficeEmployers'
+	Then I validate count of all office employers collection 'allCompanyEmployers' is '4'
+	And I validate collection of all office employers 'allCompanyEmployers' consist of person with last name 'Vlasov', 'Vlasov', 'Ivlev', 'Filipov'
+	And I validate collection of office employers 'stuffOfficeEmployers' consist of person with last name 'Vlasov', 'Vlasov', 'Filipov'
+	Then I validate count of office employers collection 'stuffOfficeEmployers' is '3'
+
 @Andrew
 Scenario: GetAbsentOfficeEmployers_WhenAllPersonInOffice
 	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'

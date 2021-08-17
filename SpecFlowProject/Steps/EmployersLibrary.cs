@@ -188,6 +188,22 @@ namespace SpecFlowProject1.Steps
             Assert.Empty(NobodyOfficeEmployersCollection);
         }
 
+
+        [Then(@"I validate collection of office employers '(.*)' consist of person with last name '(.*)', '(.*)', '(.*)'")]
+        public void ThenIValidateCollectionOfOfficeEmployersConsistOfPersonWithLastName(string _collection, string firstPerson, string secondPerson, string thirdPerson)
+        {
+            var allOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.Collection(allOfficeEmployersCollection, item => Assert.Contains(firstPerson, item.LastName),
+                   item => Assert.Contains(secondPerson, item.LastName), item => Assert.Contains(thirdPerson, item.LastName));
+        }
+
+        [Then(@"I validate count of office employers collection '(.*)' is '(.*)'")]
+        public void ThenIValidateCountOfOfficeEmployersCollectionIs(string _collection, int expectedCount)
+        {
+            var OfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.Equal(expectedCount, OfficeEmployersCollection.Count);
+        }
+
     }
 }
 
