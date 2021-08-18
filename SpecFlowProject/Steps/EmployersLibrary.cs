@@ -114,8 +114,8 @@ namespace SpecFlowProject1.Steps
             }
         }
 
-        [When(@"The person with id come in from the office company '(.*)'")]
-        public void WhenThePersonWithIdComeInFromTheOfficeCompany(string _company, Table table)
+        [When(@"The person with id come in to the office company '(.*)'")]
+        public void WhenThePersonWithIdComeInToTheOfficeCompany(string _company, Table table)
         {
             var company = (Company)_scenarioContext[_company];
             foreach (var row in table.Rows)
@@ -124,7 +124,6 @@ namespace SpecFlowProject1.Steps
                 company.PersonComeIn(person);
             }
         }
-
 
         [Then(@"I validate collection of absent office employers '(.*)' consist of person with last name '(.*)'")]
         public void ThenIValidateCollectionOfAbsentOfficeEmployersConsistOfPersonWithLastName(string _collection, string firstPerson)

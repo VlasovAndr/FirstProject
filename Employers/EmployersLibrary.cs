@@ -70,7 +70,6 @@ namespace EmployersLibrary
         public Person()
         {
             this.IsEntered = true;
-            //this.Id = new Guid();
             this.Id = Guid.NewGuid();
         }
     }

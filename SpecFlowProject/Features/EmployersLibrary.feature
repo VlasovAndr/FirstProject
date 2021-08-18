@@ -87,7 +87,7 @@ Scenario: GetAbsentOfficeEmployers_WhenOnePersonComeOut
 Scenario: GetAbsentOfficeEmployers_WhenAllPersonComeOutAndOneComeIn
 	When All person come out from the office company 'FLS'
 	When The person with LastName 'Ivlev' and FirstName 'Andrei' come in from the office company 'FLS'
-	When The person with id come in from the office company 'FLS'
+	When The person with id come in to the office company 'FLS'
 		| ID          |
 		| IdOfPerson3 |
 	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'
@@ -106,3 +106,33 @@ Scenario: GetAbsentOfficeEmployers_WhenAllPersonComeOutAndOneComeIn
 		| IdOfPerson2 |
 		| IdOfPerson4 |
 	And I validate that collection of absent office employers 'absentOfficeEmployers' does not contain persons in office
+
+	@Andrew
+Scenario: GetAbsentOfficeEmployers_WhenPersonComeOutAndComeInAndComeOut
+	When All person come out from the office company 'FLS'
+	When The person with id come in to the office company 'FLS'
+		| ID          |
+		| IdOfPerson1 |
+		| IdOfPerson2 |
+		| IdOfPerson3 |
+	When The person with id come out from the office company 'FLS'
+		| ID          |
+		| IdOfPerson1 |
+		| IdOfPerson2 |
+		| IdOfPerson3 |
+	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'
+	When I Get List Of Absent Office Employers as new Director of company 'FLS' and put it in expected scenario context 'absentOfficeEmployers'
+	Then I validate count of 'allCompanyEmployers' collection is '4'
+	And I validate collection of 'allCompanyEmployers' 'FLS' company consist of person with id
+		| ID          |
+		| IdOfPerson1 |
+		| IdOfPerson2 |
+		| IdOfPerson3 |
+		| IdOfPerson4 |
+	And I validate count of 'absentOfficeEmployers' collection is '4'
+	And I validate collection of 'absentOfficeEmployers' 'FLS' company consist of person with id
+		| ID          |
+		| IdOfPerson1 |
+		| IdOfPerson2 |
+		| IdOfPerson3 |
+		| IdOfPerson4 |
