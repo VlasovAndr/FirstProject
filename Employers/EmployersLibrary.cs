@@ -66,9 +66,12 @@ namespace EmployersLibrary
         public string FirstName;
         public string LastName;
         public bool IsEntered;
+        public Guid Id;
         public Person()
         {
             this.IsEntered = true;
+            //this.Id = new Guid();
+            this.Id = Guid.NewGuid();
         }
     }
 
