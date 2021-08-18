@@ -32,6 +32,7 @@ namespace SpecFlowProject1.Steps
             foreach (var row in table.Rows)
             {
                 var person = new Person() { LastName = row["LastName"], FirstName = row["FirstName"] };
+                _scenarioContext[row["ID"]] = person.Id;
                 company.AddPerson(person);
             }
         }
@@ -63,12 +64,13 @@ namespace SpecFlowProject1.Steps
             _scenarioContext[_absentCollection] = absentOfficeEmployersCollection;
         }
 
-        [Then(@"I validate count of all office employers collection '(.*)' is '(.*)'")]
-        public void ThenIValidateCountOfAllOfficeEmployersCollectionIs(string _collection, int expectedCount)
+        [Then(@"I validate count of '(.*)' collection is '(.*)'")]
+        public void ThenIValidateCountOfCollectionIs(string _collection, int expectedCount)
         {
             var allOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
             Assert.Equal(expectedCount, allOfficeEmployersCollection.Count);
         }
+
 
         [Then(@"I validate count of absent office employers collection '(.*)' is '(.*)'")]
         public void ThenIValidateCountOfAbsentOfficeEmployersCollectionIs(string _collection, int expectedCount)
@@ -84,13 +86,6 @@ namespace SpecFlowProject1.Steps
             Assert.Collection(allOfficeEmployersCollection, item => Assert.Contains(firstPerson, item.LastName),
                    item => Assert.Contains(secondPerson, item.LastName), item => Assert.Contains(thirdPerson, item.LastName),
                    item => Assert.Contains(fourthPerson, item.LastName));
-        }
-
-        [Then(@"I validate count of stuff office employers collection '(.*)' is '(.*)'")]
-        public void ThenIValidateCountOfStuffOfficeEmployersCollectionIs(string _collection, int expectedCount)
-        {
-            var stuffOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
-            Assert.Equal(expectedCount, stuffOfficeEmployersCollection.Count);
         }
 
         [Then(@"I validate collection of stuff office employers '(.*)' consist of person with last name '(.*)', '(.*)', '(.*)', '(.*)'")]
@@ -109,12 +104,13 @@ namespace SpecFlowProject1.Steps
             Assert.Empty(absentOfficeEmployersCollection);
         }
 
-        [Then(@"I validate that collection of stuff office employers '(.*)' does not contain absent persons")]
-        public void ThenIValidateThatCollectionOfStuffOfficeEmployersDoesNotContainAbsentPersons(string _collection)
+        [Then(@"I validate that collection of '(.*)' does not contain absent persons")]
+        public void ThenIValidateThatCollectionOfDoesNotContainAbsentPersons(string _collection)
         {
             var stuffOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
             Assert.DoesNotContain(stuffOfficeEmployersCollection, item => item.IsEntered == false);
         }
+
 
         [When(@"The person with LastName '(.*)' and FirstName '(.*)' come out from the office company '(.*)'")]
         public void WhenThePersonWithLastNameAndFirstNameComeOutFromTheOfficeCompany(string lastName, string firstName, string _company)
@@ -203,6 +199,30 @@ namespace SpecFlowProject1.Steps
             var OfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
             Assert.Equal(expectedCount, OfficeEmployersCollection.Count);
         }
+
+
+        [Then(@"I validate collection of '(.*)' '(.*)' company consist of person with id")]
+        public void ThenIValidateCollectionOfCompanyConsistOfPersonWithId(string _collection, string _company, Table table)
+        {
+            {
+                var company = (Company)_scenarioContext[_company];
+                var expectedCollections = (List<Person>)_scenarioContext[_collection];
+                var actualCollections = new List<Person>();
+                foreach (var row in table.Rows)
+                {
+                    var a = (Guid)_scenarioContext[row["ID"]];
+                    var m = _scenarioContext[row["ID"]];
+                    var b = row["ID"];
+                    var c = row;
+                    var person = company.stuff.Find((element) => (element.Id == (Guid)_scenarioContext[row["ID"]]));
+                    actualCollections.Add(person);
+                }
+                Assert.Equal(expectedCollections, actualCollections);
+            }
+        }
+
+
+
 
     }
 }
