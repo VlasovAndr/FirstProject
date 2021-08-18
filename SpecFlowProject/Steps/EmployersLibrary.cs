@@ -67,25 +67,8 @@ namespace SpecFlowProject1.Steps
         [Then(@"I validate count of '(.*)' collection is '(.*)'")]
         public void ThenIValidateCountOfCollectionIs(string _collection, int expectedCount)
         {
-            var allOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
-            Assert.Equal(expectedCount, allOfficeEmployersCollection.Count);
-        }
-
-
-        [Then(@"I validate count of absent office employers collection '(.*)' is '(.*)'")]
-        public void ThenIValidateCountOfAbsentOfficeEmployersCollectionIs(string _collection, int expectedCount)
-        {
-            var absentOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
-            Assert.Equal(expectedCount, absentOfficeEmployersCollection.Count);
-        }
-
-        [Then(@"I validate collection of all office employers '(.*)' consist of person with last name '(.*)', '(.*)', '(.*)', '(.*)'")]
-        public void ThenIValidateCollectionOfAllOfficeEmployersConsistOfPersonWithLastName(string _collection, string firstPerson, string secondPerson, string thirdPerson, string fourthPerson)
-        {
-            var allOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
-            Assert.Collection(allOfficeEmployersCollection, item => Assert.Contains(firstPerson, item.LastName),
-                   item => Assert.Contains(secondPerson, item.LastName), item => Assert.Contains(thirdPerson, item.LastName),
-                   item => Assert.Contains(fourthPerson, item.LastName));
+            var actualCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.Equal(expectedCount, actualCollection.Count);
         }
 
         [Then(@"I validate collection of stuff office employers '(.*)' consist of person with last name '(.*)', '(.*)', '(.*)', '(.*)'")]
@@ -120,6 +103,29 @@ namespace SpecFlowProject1.Steps
             company.PersonComeOut(person);
         }
 
+        [When(@"The person with id come out from the office company '(.*)'")]
+        public void WhenThePersonWithIdComeOutFromTheOfficeCompany(string _company, Table table)
+        {
+            var company = (Company)_scenarioContext[_company];
+            foreach (var row in table.Rows)
+            {
+                var person = company.stuff.Find((element) => (element.Id == (Guid)_scenarioContext[row["ID"]]));
+                company.PersonComeOut(person);
+            }
+        }
+
+        [When(@"The person with id come in from the office company '(.*)'")]
+        public void WhenThePersonWithIdComeInFromTheOfficeCompany(string _company, Table table)
+        {
+            var company = (Company)_scenarioContext[_company];
+            foreach (var row in table.Rows)
+            {
+                var person = company.stuff.Find((element) => (element.Id == (Guid)_scenarioContext[row["ID"]]));
+                company.PersonComeIn(person);
+            }
+        }
+
+
         [Then(@"I validate collection of absent office employers '(.*)' consist of person with last name '(.*)'")]
         public void ThenIValidateCollectionOfAbsentOfficeEmployersConsistOfPersonWithLastName(string _collection, string firstPerson)
         {
@@ -151,14 +157,6 @@ namespace SpecFlowProject1.Steps
             var company = (Company)_scenarioContext[_company];
             var person = company.stuff.Find((element) => (element.LastName == lastName) && (element.FirstName == firstName));
             company.PersonComeIn(person);
-        }
-
-        [Then(@"I validate collection of absent office employers '(.*)' consist of person with last name '(.*)', '(.*)', '(.*)',")]
-        public void ThenIValidateCollectionOfAbsentOfficeEmployersConsistOfPersonWithLastName(string _collection, string firstPerson, string secondPerson, string thirdPerson)
-        {
-            var absentOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
-            Assert.Collection(absentOfficeEmployersCollection, item => Assert.Contains(firstPerson, item.LastName),
-                   item => Assert.Contains(secondPerson, item.LastName), item => Assert.Contains(thirdPerson, item.LastName));
         }
 
         [When(@"I Get List Of Nobody Stuff Office Employers as new Director of company '(.*)' and put it in expected scenario context '(.*)'")]
@@ -210,10 +208,6 @@ namespace SpecFlowProject1.Steps
                 var actualCollections = new List<Person>();
                 foreach (var row in table.Rows)
                 {
-                    var a = (Guid)_scenarioContext[row["ID"]];
-                    var m = _scenarioContext[row["ID"]];
-                    var b = row["ID"];
-                    var c = row;
                     var person = company.stuff.Find((element) => (element.Id == (Guid)_scenarioContext[row["ID"]]));
                     actualCollections.Add(person);
                 }
