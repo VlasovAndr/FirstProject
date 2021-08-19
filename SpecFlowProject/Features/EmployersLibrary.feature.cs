@@ -447,16 +447,16 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="GetAbsentOfficeEmployers_WhenAllPersonInOffice")]
+        [Xunit.SkippableFactAttribute(DisplayName="GetStuffOfficeEmployers_WhenDifferentPersonComeOutAndComeIn")]
         [Xunit.TraitAttribute("FeatureTitle", "EmployersLibrary")]
-        [Xunit.TraitAttribute("Description", "GetAbsentOfficeEmployers_WhenAllPersonInOffice")]
-        [Xunit.TraitAttribute("Category", "Andrew")]
-        public virtual void GetAbsentOfficeEmployers_WhenAllPersonInOffice()
+        [Xunit.TraitAttribute("Description", "GetStuffOfficeEmployers_WhenDifferentPersonComeOutAndComeIn")]
+        [Xunit.TraitAttribute("Category", "Alex")]
+        public virtual void GetStuffOfficeEmployers_WhenDifferentPersonComeOutAndComeIn()
         {
             string[] tagsOfScenario = new string[] {
-                    "Andrew"};
+                    "Alex"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetAbsentOfficeEmployers_WhenAllPersonInOffice", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetStuffOfficeEmployers_WhenDifferentPersonComeOutAndComeIn", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 95
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -480,52 +480,81 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-#line 96
- testRunner.When("I Get List Of All Company Employers as new Director of company \'FLS\' and put it i" +
-                        "n actual scenario context \'allCompanyEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 97
- testRunner.When("I Get List Of Absent Office Employers as new Director of company \'FLS\' and put it" +
-                        " in expected scenario context \'absentOfficeEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 98
- testRunner.Then("I validate count of \'allCompanyEmployers\' collection is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
                 table12.AddRow(new string[] {
                             "IdOfPerson1"});
                 table12.AddRow(new string[] {
                             "IdOfPerson2"});
-                table12.AddRow(new string[] {
-                            "IdOfPerson3"});
-                table12.AddRow(new string[] {
-                            "IdOfPerson4"});
-#line 99
- testRunner.And("I validate collection of \'allCompanyEmployers\' \'FLS\' company consist of person wi" +
-                        "th id", ((string)(null)), table12, "And ");
+#line 96
+ testRunner.When("The person with id come out from the office company \'FLS\'", ((string)(null)), table12, "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ID"});
+                table13.AddRow(new string[] {
+                            "IdOfPerson1"});
+#line 100
+ testRunner.When("The person with id come in to the office company \'FLS\'", ((string)(null)), table13, "When ");
+#line hidden
+#line 103
+ testRunner.When("I Get List Of All Company Employers as new Director of company \'FLS\' and put it i" +
+                        "n actual scenario context \'allCompanyEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 104
+ testRunner.When("I Get List Of Stuff Office Employers as new Director of company \'FLS\' and put it " +
+                        "in expected scenario context \'stuffOfficeEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 105
- testRunner.And("I validate count of \'absentOfficeEmployers\' collection is \'0\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I validate count of \'allCompanyEmployers\' collection is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ID"});
+                table14.AddRow(new string[] {
+                            "IdOfPerson1"});
+                table14.AddRow(new string[] {
+                            "IdOfPerson2"});
+                table14.AddRow(new string[] {
+                            "IdOfPerson3"});
+                table14.AddRow(new string[] {
+                            "IdOfPerson4"});
 #line 106
- testRunner.And("I validate collection \'absentOfficeEmployers\' is empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I validate collection of \'allCompanyEmployers\' \'FLS\' company consist of person wi" +
+                        "th id", ((string)(null)), table14, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ID"});
+                table15.AddRow(new string[] {
+                            "IdOfPerson1"});
+                table15.AddRow(new string[] {
+                            "IdOfPerson3"});
+                table15.AddRow(new string[] {
+                            "IdOfPerson4"});
+#line 112
+ testRunner.And("I validate collection of \'stuffOfficeEmployers\' \'FLS\' company consist of person w" +
+                        "ith id", ((string)(null)), table15, "And ");
+#line hidden
+#line 117
+ testRunner.And("I validate count of \'stuffOfficeEmployers\' collection is \'3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 118
+ testRunner.And("I validate that collection of \'stuffOfficeEmployers\' does not contain absent pers" +
+                        "ons", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="GetAbsentOfficeEmployers_WhenOnePersonComeOut")]
+        [Xunit.SkippableFactAttribute(DisplayName="GetAbsentOfficeEmployers_WhenAllPersonInOffice")]
         [Xunit.TraitAttribute("FeatureTitle", "EmployersLibrary")]
-        [Xunit.TraitAttribute("Description", "GetAbsentOfficeEmployers_WhenOnePersonComeOut")]
+        [Xunit.TraitAttribute("Description", "GetAbsentOfficeEmployers_WhenAllPersonInOffice")]
         [Xunit.TraitAttribute("Category", "Andrew")]
-        public virtual void GetAbsentOfficeEmployers_WhenOnePersonComeOut()
+        public virtual void GetAbsentOfficeEmployers_WhenAllPersonInOffice()
         {
             string[] tagsOfScenario = new string[] {
                     "Andrew"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetAbsentOfficeEmployers_WhenOnePersonComeOut", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 109
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetAbsentOfficeEmployers_WhenAllPersonInOffice", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 121
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -548,50 +577,118 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ID"});
-                table13.AddRow(new string[] {
-                            "IdOfPerson4"});
-#line 110
- testRunner.When("The person with id come out from the office company \'FLS\'", ((string)(null)), table13, "When ");
-#line hidden
-#line 113
+#line 122
  testRunner.When("I Get List Of All Company Employers as new Director of company \'FLS\' and put it i" +
                         "n actual scenario context \'allCompanyEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 114
+#line 123
  testRunner.When("I Get List Of Absent Office Employers as new Director of company \'FLS\' and put it" +
                         " in expected scenario context \'absentOfficeEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 115
+#line 124
  testRunner.Then("I validate count of \'allCompanyEmployers\' collection is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table14.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "IdOfPerson1"});
-                table14.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "IdOfPerson2"});
-                table14.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "IdOfPerson3"});
-                table14.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "IdOfPerson4"});
-#line 116
+#line 125
  testRunner.And("I validate collection of \'allCompanyEmployers\' \'FLS\' company consist of person wi" +
-                        "th id", ((string)(null)), table14, "And ");
+                        "th id", ((string)(null)), table16, "And ");
 #line hidden
-#line 122
+#line 131
+ testRunner.And("I validate count of \'absentOfficeEmployers\' collection is \'0\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 132
+ testRunner.And("I validate collection \'absentOfficeEmployers\' is empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="GetAbsentOfficeEmployers_WhenOnePersonComeOut")]
+        [Xunit.TraitAttribute("FeatureTitle", "EmployersLibrary")]
+        [Xunit.TraitAttribute("Description", "GetAbsentOfficeEmployers_WhenOnePersonComeOut")]
+        [Xunit.TraitAttribute("Category", "Andrew")]
+        public virtual void GetAbsentOfficeEmployers_WhenOnePersonComeOut()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Andrew"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetAbsentOfficeEmployers_WhenOnePersonComeOut", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 135
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 3
+this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ID"});
+                table17.AddRow(new string[] {
+                            "IdOfPerson4"});
+#line 136
+ testRunner.When("The person with id come out from the office company \'FLS\'", ((string)(null)), table17, "When ");
+#line hidden
+#line 139
+ testRunner.When("I Get List Of All Company Employers as new Director of company \'FLS\' and put it i" +
+                        "n actual scenario context \'allCompanyEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 140
+ testRunner.When("I Get List Of Absent Office Employers as new Director of company \'FLS\' and put it" +
+                        " in expected scenario context \'absentOfficeEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 141
+ testRunner.Then("I validate count of \'allCompanyEmployers\' collection is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ID"});
+                table18.AddRow(new string[] {
+                            "IdOfPerson1"});
+                table18.AddRow(new string[] {
+                            "IdOfPerson2"});
+                table18.AddRow(new string[] {
+                            "IdOfPerson3"});
+                table18.AddRow(new string[] {
+                            "IdOfPerson4"});
+#line 142
+ testRunner.And("I validate collection of \'allCompanyEmployers\' \'FLS\' company consist of person wi" +
+                        "th id", ((string)(null)), table18, "And ");
+#line hidden
+#line 148
  testRunner.And("I validate count of \'absentOfficeEmployers\' collection is \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table15.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             "IdOfPerson4"});
-#line 123
+#line 149
  testRunner.And("I validate collection of \'absentOfficeEmployers\' \'FLS\' company consist of person " +
-                        "with id", ((string)(null)), table15, "And ");
+                        "with id", ((string)(null)), table19, "And ");
 #line hidden
-#line 126
+#line 152
  testRunner.And("I validate that collection of absent office employers \'absentOfficeEmployers\' doe" +
                         "s not contain persons in office", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -609,7 +706,7 @@ this.FeatureBackground();
                     "Andrew"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetAbsentOfficeEmployers_WhenAllPersonComeOutAndOneComeIn", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 129
+#line 155
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -632,57 +729,57 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-#line 130
+#line 156
  testRunner.When("All person come out from the office company \'FLS\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table16.AddRow(new string[] {
+                table20.AddRow(new string[] {
                             "IdOfPerson3"});
-#line 131
- testRunner.When("The person with id come in to the office company \'FLS\'", ((string)(null)), table16, "When ");
+#line 157
+ testRunner.When("The person with id come in to the office company \'FLS\'", ((string)(null)), table20, "When ");
 #line hidden
-#line 134
+#line 160
  testRunner.When("I Get List Of All Company Employers as new Director of company \'FLS\' and put it i" +
                         "n actual scenario context \'allCompanyEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 135
+#line 161
  testRunner.When("I Get List Of Absent Office Employers as new Director of company \'FLS\' and put it" +
                         " in expected scenario context \'absentOfficeEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 136
+#line 162
  testRunner.Then("I validate count of \'allCompanyEmployers\' collection is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table17.AddRow(new string[] {
+                table21.AddRow(new string[] {
                             "IdOfPerson1"});
-                table17.AddRow(new string[] {
+                table21.AddRow(new string[] {
                             "IdOfPerson2"});
-                table17.AddRow(new string[] {
+                table21.AddRow(new string[] {
                             "IdOfPerson3"});
-                table17.AddRow(new string[] {
+                table21.AddRow(new string[] {
                             "IdOfPerson4"});
-#line 137
+#line 163
  testRunner.And("I validate collection of \'allCompanyEmployers\' \'FLS\' company consist of person wi" +
-                        "th id", ((string)(null)), table17, "And ");
+                        "th id", ((string)(null)), table21, "And ");
 #line hidden
-#line 143
+#line 169
  testRunner.And("I validate count of \'absentOfficeEmployers\' collection is \'3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table18.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "IdOfPerson1"});
-                table18.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "IdOfPerson2"});
-                table18.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "IdOfPerson4"});
-#line 144
+#line 170
  testRunner.And("I validate collection of \'absentOfficeEmployers\' \'FLS\' company consist of person " +
-                        "with id", ((string)(null)), table18, "And ");
+                        "with id", ((string)(null)), table22, "And ");
 #line hidden
-#line 149
+#line 175
  testRunner.And("I validate that collection of absent office employers \'absentOfficeEmployers\' doe" +
                         "s not contain persons in office", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -700,7 +797,7 @@ this.FeatureBackground();
                     "Andrew"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetAbsentOfficeEmployers_WhenPersonComeOutAndComeInAndComeOut", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 152
+#line 178
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -723,74 +820,74 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-#line 153
+#line 179
  testRunner.When("All person come out from the office company \'FLS\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table19.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "IdOfPerson1"});
-                table19.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "IdOfPerson2"});
-                table19.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "IdOfPerson3"});
-#line 154
- testRunner.When("The person with id come in to the office company \'FLS\'", ((string)(null)), table19, "When ");
+#line 180
+ testRunner.When("The person with id come in to the office company \'FLS\'", ((string)(null)), table23, "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table20.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "IdOfPerson1"});
-                table20.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "IdOfPerson2"});
-                table20.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "IdOfPerson3"});
-#line 159
- testRunner.When("The person with id come out from the office company \'FLS\'", ((string)(null)), table20, "When ");
+#line 185
+ testRunner.When("The person with id come out from the office company \'FLS\'", ((string)(null)), table24, "When ");
 #line hidden
-#line 164
+#line 190
  testRunner.When("I Get List Of All Company Employers as new Director of company \'FLS\' and put it i" +
                         "n actual scenario context \'allCompanyEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 165
+#line 191
  testRunner.When("I Get List Of Absent Office Employers as new Director of company \'FLS\' and put it" +
                         " in expected scenario context \'absentOfficeEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 166
+#line 192
  testRunner.Then("I validate count of \'allCompanyEmployers\' collection is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table21.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "IdOfPerson1"});
-                table21.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "IdOfPerson2"});
-                table21.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "IdOfPerson3"});
-                table21.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "IdOfPerson4"});
-#line 167
+#line 193
  testRunner.And("I validate collection of \'allCompanyEmployers\' \'FLS\' company consist of person wi" +
-                        "th id", ((string)(null)), table21, "And ");
+                        "th id", ((string)(null)), table25, "And ");
 #line hidden
-#line 173
+#line 199
  testRunner.And("I validate count of \'absentOfficeEmployers\' collection is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table22.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "IdOfPerson1"});
-                table22.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "IdOfPerson2"});
-                table22.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "IdOfPerson3"});
-                table22.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "IdOfPerson4"});
-#line 174
+#line 200
  testRunner.And("I validate collection of \'absentOfficeEmployers\' \'FLS\' company consist of person " +
-                        "with id", ((string)(null)), table22, "And ");
+                        "with id", ((string)(null)), table26, "And ");
 #line hidden
-#line 180
+#line 206
  testRunner.And("I validate that collection of absent office employers \'absentOfficeEmployers\' doe" +
                         "s not contain persons in office", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -808,7 +905,7 @@ this.FeatureBackground();
                     "Andrew"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetAbsentOfficeEmployers_WhenOnePersonRemoveFromOffice", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 183
+#line 209
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -831,40 +928,40 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table23.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "IdOfPerson4"});
-#line 184
- testRunner.When("The person with id remove from the company \'FLS\'", ((string)(null)), table23, "When ");
+#line 210
+ testRunner.When("The person with id remove from the company \'FLS\'", ((string)(null)), table27, "When ");
 #line hidden
-#line 187
+#line 213
  testRunner.When("I Get List Of All Company Employers as new Director of company \'FLS\' and put it i" +
                         "n actual scenario context \'allCompanyEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 188
+#line 214
  testRunner.When("I Get List Of Absent Office Employers as new Director of company \'FLS\' and put it" +
                         " in expected scenario context \'absentOfficeEmployers\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 189
+#line 215
  testRunner.Then("I validate count of \'allCompanyEmployers\' collection is \'3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
                             "ID"});
-                table24.AddRow(new string[] {
+                table28.AddRow(new string[] {
                             "IdOfPerson1"});
-                table24.AddRow(new string[] {
+                table28.AddRow(new string[] {
                             "IdOfPerson2"});
-                table24.AddRow(new string[] {
+                table28.AddRow(new string[] {
                             "IdOfPerson3"});
-#line 190
+#line 216
  testRunner.And("I validate collection of \'allCompanyEmployers\' \'FLS\' company consist of person wi" +
-                        "th id", ((string)(null)), table24, "And ");
+                        "th id", ((string)(null)), table28, "And ");
 #line hidden
-#line 195
+#line 221
  testRunner.And("I validate count of \'absentOfficeEmployers\' collection is \'0\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 196
+#line 222
  testRunner.And("I validate collection \'absentOfficeEmployers\' is empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
