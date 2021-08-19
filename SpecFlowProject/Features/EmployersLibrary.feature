@@ -58,12 +58,38 @@ Scenario: GetStuffOfficeEmployers_WhenOnePersonComeOut
 		| IdOfPerson2 |
 		| IdOfPerson3 |
 		| IdOfPerson4 |
-		And I validate collection of 'stuffOfficeEmployers' 'FLS' company consist of person with id
+	And I validate collection of 'stuffOfficeEmployers' 'FLS' company consist of person with id
 		| ID          |
 		| IdOfPerson1 |
 		| IdOfPerson2 |
 		| IdOfPerson4 |
 	Then I validate count of 'stuffOfficeEmployers' collection is '3'
+
+@Alex
+Scenario: GetStuffOfficeEmployers_WhenOnePersonComeOutAndComeIn
+	When The person with id come out from the office company 'FLS'
+		| ID          |
+		| IdOfPerson1 |
+	When The person with id come in to the office company 'FLS'
+		| ID          |
+		| IdOfPerson1 |
+	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'
+	When I Get List Of Stuff Office Employers as new Director of company 'FLS' and put it in expected scenario context 'stuffOfficeEmployers'
+	Then I validate count of 'allCompanyEmployers' collection is '4'
+	And I validate collection of 'allCompanyEmployers' 'FLS' company consist of person with id
+		| ID          |
+		| IdOfPerson1 |
+		| IdOfPerson2 |
+		| IdOfPerson3 |
+		| IdOfPerson4 |
+	And I validate collection of 'stuffOfficeEmployers' 'FLS' company consist of person with id
+		| ID          |
+		| IdOfPerson1 |
+		| IdOfPerson2 |
+		| IdOfPerson3 |
+		| IdOfPerson4 |
+	And I validate count of 'stuffOfficeEmployers' collection is '4'
+	And I validate that collection of 'stuffOfficeEmployers' does not contain absent persons
 
 @Andrew
 Scenario: GetAbsentOfficeEmployers_WhenAllPersonInOffice
