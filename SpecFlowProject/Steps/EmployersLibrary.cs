@@ -135,6 +135,16 @@ namespace SpecFlowProject1.Steps
                 company.PersonComeOut(person);
             }
         }
+        [When(@"All person come in to the office company '(.*)'")]
+        public void WhenAllPersonComeInToTheOfficeCompany(string _company)
+        {
+            var company = (Company)_scenarioContext[_company];
+
+            foreach (var person in company.stuff)
+            {
+                company.PersonComeIn(person);
+            }
+        }
 
         [Then(@"I validate collection of '(.*)' '(.*)' company consist of person with id")]
         public void ThenIValidateCollectionOfCompanyConsistOfPersonWithId(string _collection, string _company, Table table)
