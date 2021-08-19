@@ -74,8 +74,8 @@ namespace SpecFlowProject1.Steps
         [Then(@"I validate collection '(.*)' is empty")]
         public void ThenIValidateCollectionIsEmpty(string _collection)
         {
-            var absentOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
-            Assert.Empty(absentOfficeEmployersCollection);
+            var OfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.Empty(OfficeEmployersCollection);
         }
 
         [Then(@"I validate that collection of '(.*)' does not contain absent persons")]

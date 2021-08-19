@@ -181,6 +181,21 @@ Scenario: GetStuffOfficeEmployers_WhenAllPersonComeOutAndComeIn
 	And I validate count of 'stuffOfficeEmployers' collection is '4'
 	And I validate that collection of 'stuffOfficeEmployers' does not contain absent persons
 
+@Alex
+Scenario: GetStuffOfficeEmployers_WhenCompanyIsEmpty
+	When The person with id remove from the company 'FLS'
+		| ID          |
+		| IdOfPerson1 |
+		| IdOfPerson2 |
+		| IdOfPerson3 |
+		| IdOfPerson4 |
+	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'
+	When I Get List Of Stuff Office Employers as new Director of company 'FLS' and put it in expected scenario context 'stuffOfficeEmployers'
+	Then I validate count of 'allCompanyEmployers' collection is '0'
+	And I validate collection 'allCompanyEmployers' is empty
+	And I validate collection 'stuffOfficeEmployers' is empty
+	And I validate count of 'stuffOfficeEmployers' collection is '0'
+
 @Andrew
 Scenario: GetAbsentOfficeEmployers_WhenAllPersonInOffice
 	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'
