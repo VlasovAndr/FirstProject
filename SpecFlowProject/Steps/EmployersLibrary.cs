@@ -74,8 +74,8 @@ namespace SpecFlowProject1.Steps
         [Then(@"I validate collection '(.*)' is empty")]
         public void ThenIValidateCollectionIsEmpty(string _collection)
         {
-            var absentOfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
-            Assert.Empty(absentOfficeEmployersCollection);
+            var OfficeEmployersCollection = (List<Person>)_scenarioContext[_collection];
+            Assert.Empty(OfficeEmployersCollection);
         }
 
         [Then(@"I validate that collection of '(.*)' does not contain absent persons")]
@@ -133,6 +133,16 @@ namespace SpecFlowProject1.Steps
             foreach (var person in company.stuff)
             {
                 company.PersonComeOut(person);
+            }
+        }
+        [When(@"All person come in to the office company '(.*)'")]
+        public void WhenAllPersonComeInToTheOfficeCompany(string _company)
+        {
+            var company = (Company)_scenarioContext[_company];
+
+            foreach (var person in company.stuff)
+            {
+                company.PersonComeIn(person);
             }
         }
 
