@@ -31,23 +31,39 @@ Scenario: GetStuffOfficeEmployers_WhenAllPersonInOffice
 
 @Alex
 Scenario: GetStuffOfficeEmployers_WhenNobodyPersonInOffice
+	When All person come out from the office company 'FLS'
 	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'
-	When I Get List Of Nobody Stuff Office Employers as new Director of company 'FLS' and put it in expected scenario context 'NobodyOfficeEmployersInOffice'
+	When I Get List Of Stuff Office Employers as new Director of company 'FLS' and put it in expected scenario context 'NobodyOfficeEmployersInOffice'
 	Then I validate count of 'allCompanyEmployers' collection is '4'
-	And I validate collection of all office employers 'allCompanyEmployers' consist of person with last name 'Vlasov', 'Vlasov', 'Ivlev', 'Filipov'
-	And I validate count of Nobody stuff office employers collection 'NobodyOfficeEmployersInOffice' is '0'
-	And I validate collection of office employers 'NobodyOfficeEmployersInOffice' is empty
+	And I validate collection of 'allCompanyEmployers' 'FLS' company consist of person with id
+		| ID          |
+		| IdOfPerson1 |
+		| IdOfPerson2 |
+		| IdOfPerson3 |
+		| IdOfPerson4 |
+	And I validate count of 'NobodyOfficeEmployersInOffice' collection is '0'
+	And I validate collection 'NobodyOfficeEmployersInOffice' is empty
 
 @Alex
 Scenario: GetStuffOfficeEmployers_WhenOnePersonComeOut
-	When The person with LastName 'Ivlev' and FirstName 'Andrei' come out from the office company 'FLS'
-	#When The person with Id 'IdOfPerson3' come out from the office company 'FLS'
+	When The person with id come out from the office company 'FLS'
+		| ID          |
+		| IdOfPerson3 |
 	When I Get List Of All Company Employers as new Director of company 'FLS' and put it in actual scenario context 'allCompanyEmployers'
 	When I Get List Of Stuff Office Employers as new Director of company 'FLS' and put it in expected scenario context 'stuffOfficeEmployers'
 	Then I validate count of 'allCompanyEmployers' collection is '4'
-	And I validate collection of all office employers 'allCompanyEmployers' consist of person with last name 'Vlasov', 'Vlasov', 'Ivlev', 'Filipov'
-	And I validate collection of office employers 'stuffOfficeEmployers' consist of person with last name 'Vlasov', 'Vlasov', 'Filipov'
-	Then I validate count of office employers collection 'stuffOfficeEmployers' is '3'
+	And I validate collection of 'allCompanyEmployers' 'FLS' company consist of person with id
+		| ID          |
+		| IdOfPerson1 |
+		| IdOfPerson2 |
+		| IdOfPerson3 |
+		| IdOfPerson4 |
+		And I validate collection of 'stuffOfficeEmployers' 'FLS' company consist of person with id
+		| ID          |
+		| IdOfPerson1 |
+		| IdOfPerson2 |
+		| IdOfPerson4 |
+	Then I validate count of 'stuffOfficeEmployers' collection is '3'
 
 @Andrew
 Scenario: GetAbsentOfficeEmployers_WhenAllPersonInOffice
@@ -82,7 +98,7 @@ Scenario: GetAbsentOfficeEmployers_WhenOnePersonComeOut
 		| ID          |
 		| IdOfPerson4 |
 	And I validate that collection of absent office employers 'absentOfficeEmployers' does not contain persons in office
-	
+
 @Andrew
 Scenario: GetAbsentOfficeEmployers_WhenAllPersonComeOutAndOneComeIn
 	When All person come out from the office company 'FLS'
@@ -135,7 +151,7 @@ Scenario: GetAbsentOfficeEmployers_WhenPersonComeOutAndComeInAndComeOut
 		| IdOfPerson2 |
 		| IdOfPerson3 |
 		| IdOfPerson4 |
-		And I validate that collection of absent office employers 'absentOfficeEmployers' does not contain persons in office
+	And I validate that collection of absent office employers 'absentOfficeEmployers' does not contain persons in office
 
 @Andrew
 Scenario: GetAbsentOfficeEmployers_WhenOnePersonRemoveFromOffice
